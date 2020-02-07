@@ -1,0 +1,67 @@
+{{diagnostics | json}}
+<div class="container">
+  <h1>Add Book</h1>
+  <form (ngSubmit)="addBook()" #addBookForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" 
+      minength="2"
+      required
+      [(ngModel)]="model.title"
+      name="title"
+      #title="ngModel"
+     >
+     <div [hidden]="title.valid || title.prestine" class="alert alert-danger">
+        Title is required
+     </div>
+    </div>
+    
+
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input type="text" class="form-control" id="author" 
+      required
+      [(ngModel)]="model.author"
+      name="author"
+   >
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" 
+      required
+      [(ngModel)]="model.description"
+      name="description"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" 
+      required
+      [(ngModel)]="model.price"
+      name="price">
+    </div>
+ 
+    <div class="form-group">
+      <label for="gnr">Genre</label>
+        <select class="form-control" 
+          id="gnr" 
+          required
+          [(ngModel)]="model.genre"
+      name="genre">
+            <option *ngFor="let gnr of genre" [value]="gnr">{{gnr}}</option>
+        </select>
+    </div>
+    
+    <button  type="submit" class="btn btn-success" [disabled]="!addBookForm.valid">Add Book</button> 
+ 
+    <button type="reset" class="btn btn-default grey" (click)="getBack()">Back</button>      
+  </form>
+  <div *ngIf="addBookSuccess" class="alert alert-success">
+    Successfull add Book {{registeredUser}}!
+  </div>
+  <div *ngIf="addBookFail" class="alert alert-danger">
+      Book Not added!
+  </div>
+</div>

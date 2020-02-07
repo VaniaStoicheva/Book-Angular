@@ -1,0 +1,59 @@
+<div class="container">
+        <h1>Edit Book</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <form (ngSubmit)="updateBooks(book._id)" #bookForm="ngForm">
+              
+                
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control"  
+              
+                required
+                [(ngModel)]="book.title" 
+                name="title" 
+                #title="ngModel">
+              </div>
+
+              <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" 
+                required
+                [(ngModel)]="book.author" 
+                name="author"
+                #author="ngModel" >
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" id="description"
+                required
+                [(ngModel)]="book.description" 
+                name="description" 
+                #description="ngModel">
+              </div>
+
+              <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control" id="price"
+           
+                required
+                [(ngModel)]="book.price" 
+                name="price"
+                #price="ngModel">
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-success" [disabled]="!bookForm.form.valid">Update</button>
+              </div>
+
+              <div *ngIf="editeSuccess" class="alert alert-success">
+                Successfull edited book {{book.title}}!
+              </div>
+              <!-- <div *ngIf="registerFail" class="alert alert-danger">
+                  User already exists!
+              </div> -->
+            </form>
+          </div>
+        </div>
+</div>
